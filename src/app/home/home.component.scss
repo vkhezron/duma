@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+// Modern color palette
+$primary-color: #29ABE2; // Light blue
+$secondary-color: #434A54; // Dark gray
+$background-color: #F5F7FA; // Light gray
+$text-color: #333333; // Dark text
+$accent-color: #22d3ee;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow: auto;
+  position: relative;
+}
+
+.home-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gradient-bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba($primary-color, 0.1) 0%,
+    rgba($secondary-color, 0.1) 50%,
+    rgba($accent-color, 0.1) 100%
+  );
+  animation: rotate 30s linear infinite;
+  z-index: 1;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .logo-container {
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 120px;
+      height: auto;
+    }
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: $secondary-color;
+    margin-top: 1rem;
+  }
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .logo-container {
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: clamp(80px, 15vw, 150px);
+      height: auto;
+    }
+  }
+
+  .content-wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      color: $text-color;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s ease forwards;
+
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+    }
+
+    .cta-button {
+      padding: clamp(0.6rem, 2vw, 1rem) clamp(2rem, 5vw, 5rem);
+      font-size: clamp(0.9rem, 3vw, 1.5rem);
+      background-color: $primary-color;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #777777;
+  border-top: 1px solid #E0E0E0;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .home-container {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  main .content-wrapper {
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-button {
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+    }
+  }
+
+  .logo-container img {
+    width: 100px;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0.5rem;
+  }
+
+  main {
+    padding: 1rem 0.5rem;
+  }
+
+  header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  footer {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .home-container {
+    min-height: 100%;
+  }
+
+  main {
+    padding: 1rem 0;
+    
+    .logo-container img {
+      width: clamp(60px, 10vh, 100px);
+    }
+
+    .content-wrapper h2 {
+      font-size: clamp(1rem, 3vh, 1.5rem);
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+
+  span {
+    display: inline-block;
+  }
+
+  .d {
+    color: $primary-color;
+    font-size: 72px;
+    animation: scaleUp 1s ease-in-out forwards;
+  }
+
+  .uma {
+    animation: slideIn 1s ease-in-out forwards;
+  }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.button {
+  background-color: $primary-color;
+  color: $background-color;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 2s forwards;
+
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+    transform: scale(1.05);
+  }
+
+  &.loading {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
+
+.wave-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.wave {
+  position: absolute;
+  background: rgba(255, 223, 0, 0.2);
+  border-radius: 50%;
+}
+
+.audio-wave {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+
+  .bar {
+    display: inline-block;
+    width: 8px;
+    height: 30px;
+    margin: 0 4px;
+    background-color: $primary-color;
+    animation: waveBar 2s ease-in-out infinite;
+
+    &:nth-child(2n) {
+      animation-delay: 0.5s;
+    }
+
+    &:nth-child(3n) {
+      animation-delay: 1s;
+    }
+  }
+}
+
+.loading-text {
+  display: none;
+  margin-top: 20px;
+  font-size: 24px;
+  color: $primary-color;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes waveAnimation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes waveBar {
+  0%, 100% { height: 30px; }
+  50% { height: 60px; }
+}
