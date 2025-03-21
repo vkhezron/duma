@@ -11,9 +11,19 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  isMenuOpen = false;
   constructor(private router: Router) {}
   
   navigateToAboutUs() {
+    this.isMenuOpen = false;
+    document.body.style.overflow = '';
     this.router.navigate(['/about-us']);
   }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
+  }
 }
+
+
